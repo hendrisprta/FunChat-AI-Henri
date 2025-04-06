@@ -193,12 +193,15 @@ form {
     const API_KEY = 'sk-wjhho3rbb0dq8f';
 
     window.onload = () => {
-      const saved = localStorage.getItem('chat_history');
-      if (saved) {
-        const messages = JSON.parse(saved);
-        messages.forEach(msg => addMessage(msg.content, msg.sender, msg.isHTML));
-      }
-    };
+  const saved = localStorage.getItem('chat_history');
+  if (saved) {
+    const messages = JSON.parse(saved);
+    messages.forEach(msg => addMessage(msg.content, msg.sender, msg.isHTML));
+  } else {
+    // Teks sambutan
+    addMessage("Halo, Aku Henri Chat AI - AI CHAT GPT yang siap membantumu, apa yang kamu butuhkan? 🙄 Pertama, Perintahkan aku untuk menggunakan bahasa Indonesia (jika perlu)", 'ai');
+  }
+};
 
     function saveToLocalStorage() {
       const messages = [...document.querySelectorAll('.message')].map(msg => ({
