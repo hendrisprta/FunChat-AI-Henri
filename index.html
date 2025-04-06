@@ -89,13 +89,25 @@ button:hover {
       background: #fff;
     }
 
+form {
+  display: flex;
+  padding: 4px 8px;
+  background: #f0f0f0;
+  align-items: center;
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
+  border-top: 1px solid #ddd;
+}
+
+/*
     form {
       display: flex;
       padding: 6px 8px;
       background: #f0f0f0;
       align-items: center;
     }
-
+*/ 
     input[type="text"] {
       flex: 1;
       padding: 10px 12px;
@@ -115,13 +127,26 @@ button:hover {
       background: transparent;
     }
 
+#form .send {
+  background: #075e54;
+  color: white;
+  border-radius: 20px;
+  margin-left: 6px;
+  padding: 0 10px;
+  height: 40px;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/*
     .send {
       background: #075e54;
       color: white;
       border-radius: 20px;
       padding: 0 16px;
     }
-
+*/
     .sticker {
       max-width: 120px;
       border-radius: 10px;
