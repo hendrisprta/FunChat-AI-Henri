@@ -5,22 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Henri - Chat AI WhatsApp Style</title>
   <link rel="icon" href="Logo.png" type="image/png">
-
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     html, body {
-      height: 100%;
-      width: 100%;
       margin: 0;
       padding: 0;
+      height: 100%;
+      font-family: 'Segoe UI', sans-serif;
+      background: #ece5dd;
     }
 
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #ece5dd;
       display: flex;
       flex-direction: column;
-      height: 100vh;
-      overflow: hidden;
     }
 
     header {
@@ -40,6 +40,7 @@
       overflow-y: auto;
       display: flex;
       flex-direction: column;
+      min-height: 0;
     }
 
     .message {
@@ -64,44 +65,35 @@
 
     form {
       display: flex;
-      padding: 8px 10px;
+      padding: 6px 8px;
       background: #f0f0f0;
       align-items: center;
-      position: sticky;
-      bottom: 0;
-      z-index: 10;
-    }
-
-    #form button,
-    #form input {
-      height: 40px;
-    }
-
-    #form button {
-      padding: 0 12px;
-      border: none;
-      border-radius: 50%;
-      font-size: 18px;
-      background: transparent;
-      cursor: pointer;
-    }
-
-    #form .send {
-      background: #075e54;
-      color: white;
-      border-radius: 20px;
-      margin-left: 8px;
     }
 
     input[type="text"] {
       flex: 1;
-      padding: 0 12px;
+      padding: 10px 12px;
       font-size: 14px;
       border: none;
       border-radius: 20px;
       outline: none;
       background: white;
-      margin-left: 8px;
+      margin: 0 8px;
+    }
+
+    #form button {
+      height: 40px;
+      font-size: 18px;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+    }
+
+    .send {
+      background: #075e54;
+      color: white;
+      border-radius: 20px;
+      padding: 0 16px;
     }
 
     .sticker {
@@ -129,6 +121,7 @@
   </style>
 </head>
 <body>
+
   <header>
     Henri Chat AI - WhatsApp Style
     <button id="resetBtn">Reset</button>
@@ -148,7 +141,6 @@
     const input = document.getElementById('question');
     const API_KEY = 'sk-wjhho3rbb0dq8f';
 
-    // Load chat dari localStorage
     window.onload = () => {
       const saved = localStorage.getItem('chat_history');
       if (saved) {
@@ -157,7 +149,6 @@
       }
     };
 
-    // Simpan chat
     function saveToLocalStorage() {
       const messages = [...document.querySelectorAll('.message')].map(msg => ({
         content: msg.innerHTML,
@@ -167,7 +158,6 @@
       localStorage.setItem('chat_history', JSON.stringify(messages));
     }
 
-    // Tambah chat bubble
     function addMessage(content, sender, isHTML = false) {
       const msg = document.createElement('div');
       msg.className = `message ${sender}`;
@@ -177,7 +167,6 @@
       saveToLocalStorage();
     }
 
-    // Kirim pertanyaan
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const question = input.value.trim();
@@ -196,7 +185,6 @@
       }
     });
 
-    // Kirim stiker + reaksi emoji
     function sendSticker() {
       const url = 'https://raw.githubusercontent.com/hendrisprta/hendritester/refs/heads/main/Stikerhenri.png';
       const msg = document.createElement('div');
@@ -232,7 +220,6 @@
       }, 600);
     }
 
-    // Reset Chat
     document.getElementById('resetBtn').addEventListener('click', () => {
       if (confirm("Yakin ingin menghapus semua chat?")) {
         localStorage.removeItem('chat_history');
