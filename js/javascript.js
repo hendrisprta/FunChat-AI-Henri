@@ -53,7 +53,7 @@
     const context = chatHistoryArr.join('\n');
 
     try {
-      const res = await fetch(`https://forestapi.web.id/api/ai/chatgpt-4?api_key=${API_KEY}&question=${encodeURIComponent(context)}`);
+      const res = await fetch(`https://rescenic.web.id/api/ai/chatgpt-4?api_key=${API_KEY}&question=${encodeURIComponent(context)}`);
       const data = await res.json();
       const reply = data?.data?.text || "Gagal menerima jawaban.";
       addMessage(reply, 'ai');
